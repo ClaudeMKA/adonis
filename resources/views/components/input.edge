@@ -1,0 +1,15 @@
+<div class="">
+    <label for="{{name}}">{{label}}</label>
+    @if(type === 'textarea')
+        <textarea id="{{name}}" name="{{name}}">{{value}}</textarea>
+    @else
+        <input class="form-control {{flashMessages.has(`error.${name}`) ? 'is-invalid' : ''}}" type="text" id="{{name}}" name="{{name}}" value="{{value}}">
+    @endif
+
+   @if(flashMessages.has(`errors.${name}`))
+      <div class="invalid-feedback">
+         {{ flashMessages.get(`errors.${name}`) }}
+      </div>
+   @endif
+
+</div>
