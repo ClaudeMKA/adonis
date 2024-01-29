@@ -1,15 +1,16 @@
 <div class="">
     <label for="{{name}}">{{label}}</label>
     @if(type === 'textarea')
-        <textarea id="{{name}}" name="{{name}}">{{value}}</textarea>
+        <textarea id="{{name}}" name="{{name}}" class="{{ flashMessages.has(`errors.${name}`) ? 'is-invalid' : '' }}">{{
+        flashMessages.get(name) || value || '' }}</textarea>
     @else
-        <input class="form-control {{flashMessages.has(`error.${name}`) ? 'is-invalid' : ''}}" type="text" id="{{name}}" name="{{name}}" value="{{value}}">
+        <input class="form-control {{flashMessages.has(`errors.${name}`) ? 'is-invalid' : ''}}" type="text" id="{{name}}" name="{{name}}" value="{{
+        flashMessages.get(name) || value || '' }}">
     @endif
 
-   @if(flashMessages.has(`errors.${name}`))
-      <div class="invalid-feedback">
-         {{ flashMessages.get(`errors.${name}`) }}
-      </div>
-   @endif
-
+    @if(flashMessages.has(`errors.${name}`))
+        <div class="invalid-feedback">
+            {{ flashMessages.get(`errors.${name}`) }}
+        </div>
+    @endif
 </div>
